@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.field {
+    display: flex;
+}
+
+.cell {
+    width: 80px;
+    height: 80px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.robot {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: green;
+}
+
+.barrier {
+    background: red;
+}
+
+.element {
+    background: skyblue;
+}
+
+.elementUp {
+    background: thistle;
+}
+
+.end {
+    background: yellow;
+}
+
+.code {
+    padding: 15px 10px;
+}
+
+.up {
+    background: red;
+}
+
+.down {
+    background: green;
+}
+
+.left {
+    background: yellowgreen;
+}
+
+.right {
+    background: fuchsia;
+}

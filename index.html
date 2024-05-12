@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Robot</title>
+</head>
+
+<body>
+    <div class="w-full h-screen flex">
+        <div class="w-1/2 border flex flex-col justify-between items-center p-4">
+            <div class="field"></div>
+            <div class="flex gap-x-3">
+                <button class="reset w-[200px] p-4 bg-red-300 rounded-lg">Reset</button>
+                <button class="start w-[200px] p-4 bg-green-300 rounded-lg">Start</button>
+            </div>
+
+            <div class="commands flex gap-x-3">
+                <button class="command w-[150px] p-4 bg-yellow-300 rounded-lg" value="up">Up</button>
+                <button class="command w-[150px] p-4 bg-yellow-300 rounded-lg" value="down">Down</button>
+                <button class="command w-[150px] p-4 bg-yellow-300 rounded-lg" value="left">Left</button>
+                <button class="command w-[150px] p-4 bg-yellow-300 rounded-lg" value="right">Right</button>
+            </div>
+        </div>
+        <div class="w-1/2 p-4">
+            <div class="codes w-full h-full bg-slate-300 rounded-lg flex flex-col gap-y-3 p-4 overflow-auto"></div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>
