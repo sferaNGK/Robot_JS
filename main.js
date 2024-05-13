@@ -1,36 +1,60 @@
 let cells;
 let arrayCommands = []
 
-let end = {
+const end = {
     x: 4,
     y: 4
 }
 
-let robot = {
+const robot = {
     x: 0,
     y: 0
 }
 
-let barriers = [
+const barriers = [
+    {
+        x: 1,
+        y: 0
+    },
+    {
+        x: 1,
+        y: 1
+    },
+    {
+        x: 1,
+        y: 2
+    },
     {
         x: 1,
         y: 3,
     },
     {
         x: 3,
+        y: 1
+    },
+    {
+        x: 3,
         y: 2
+    },
+    {
+        x: 3,
+        y: 3
+    },
+    {
+        x: 3,
+        y: 4
     }
 ]
 
 let elements = [
     {
-        x: 0,
-        y: 3,
+        x: 1,
+        y: 4,
         isUp: false
     },
     {
-        x: 4,
-        y: 3,
+        x: 3,
+        y: 0,
         isUp: false
     }
 ]
@@ -41,7 +65,7 @@ const startBtn = document.querySelector(".start")
 const commands = document.querySelector(".commands")
 const codes = document.querySelector(".codes")
 
-function genetationField(num = 5, barrierCount = 3) {
+function genetationField(num = 5) {
 
     for (x = 0; x < num; x++) {
         const column = document.createElement("div")
@@ -89,12 +113,20 @@ function cheakDead() {
     }
 }
 
+function cheakEnd() {
+    if (robot.x == end.x && robot.y == end.y) {
+        alert("Вы победили!")
+
+        endGame()
+    }
+}
+
 function cheakElement() {
     if (elements.some(element => element.x == robot.x && element.y == robot.y)) {
 
         cells.forEach((cell) => {
             if (cell.dataset.x == robot.x && cell.dataset.y == robot.y) {
-               cell.classList.remove("element")
+                cell.classList.remove("element")
             }
         })
 
@@ -106,19 +138,6 @@ function cheakElement() {
             return el
         })
 
-    }
-}
-
-function cheakEnd() {
-    if (robot.x == end.x && robot.y == end.y) {
-
-        if(elements.length == elements.filter(el => el.isUp == true).length) {
-            alert("Вы победили!")
-            
-            return
-        }
-
-        alert("Вы собрали не все компоненты")
     }
 }
 
@@ -219,9 +238,6 @@ function startProgram() {
 }
 
 function endGame() {
-    barriers = []
-    end = {}
-    robot = {}
     arrayCommands = []
     codes.innerHTML = ""
     field.innerHTML = ""
@@ -230,10 +246,19 @@ function endGame() {
 
 commands.addEventListener("click", (event) => {
 
-    event.preventDefault()
+    let code;
+
+    if (event.target.classList.contains("crobot")) {
+        code = `<div class="code noFull rounded-lg">robot</div>`
+        code.innerHTML = code
+        codes.innerHTML += code
+        return
+    }
 
     if (event.target.classList.contains("command")) {
-        codes.innerHTML += `<div class="code rounded-lg ${event.target.value}">${event.target.value}</div>`
+        codes.querySelector(".noFull").remove()
+        code = `<div class="code noNum rounded-lg ${event.target.value}">robot.${event.target.value}()</div>`
+        codes.innerHTML += code
         arrayCommands.push(event.target.value)
     }
 })
